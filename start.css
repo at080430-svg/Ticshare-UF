@@ -1,0 +1,70 @@
+header{
+    font-size: 2.1rem;
+}
+
+header h1{
+    margin: 0;
+    line-height: 1.1;
+}
+
+.underrubrik{
+    background: linear-gradient(90deg, #32d786 0%, #29a0e0 60%, #4a80ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+
+.logo{
+    width: 8rem;
+    margin-bottom: 5rem;
+    padding-left: 4rem;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.toppen{
+    margin-bottom: 8.3rem;
+}
+
+nav {
+    margin-top: -2.5rem;
+    font-size: 1.2rem;
+    color: #bfbfbf;
+
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.kommande-events{
+    margin-top: 5rem;   
+}
+
+.välja{
+    display: flex;
+    justify-content: left;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.välj{
+    border: 0.1rem solid rgb(71, 70, 70);
+    border-radius: 2rem;
+
+    padding: 0.5rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    color: white;
+    cursor: pointer;
+    margin: -0.5rem;
+}
+
+.välj.vald {
+    display: grid;
+    border-color: linear-gradient(90deg, #32d786 50%, #29a0e0 50%);
+    background-color: blue;
+}
