@@ -2,6 +2,10 @@ header{
     font-size: 2.1rem;
 }
 
+.huvudrubrik .underrubrik{
+    font-weight: 500;
+}
+
 header h1{
     margin: 0;
     line-height: 1.1;
@@ -15,19 +19,22 @@ header h1{
     color: transparent;
 }
 
+.underbeskrivning{
+    max-width: 860px;
+}
+
 
 .logo{
     width: 8rem;
-    margin-bottom: 5rem;
-    padding-left: 4rem;
-    
-    position: absolute;
-    top: 0;
-    left: 0;
+    margin-left: -1rem;
 }
 
 .toppen{
     margin-bottom: 8.3rem;
+}
+
+*{
+    box-sizing: border-box;
 }
 
 nav {
@@ -38,6 +45,8 @@ nav {
     display: flex;
     justify-content: center;
     gap: 2rem;
+    margin-top: -5rem;
+    
 }
 
 .kommande-events{
@@ -66,5 +75,18 @@ nav {
 .välj.vald {
     display: grid;
     border-color: linear-gradient(90deg, #32d786 50%, #29a0e0 50%);
-    background-color: blue;
+    background-color: rgb(67, 67, 160);
+}
+
+.såfunkardet{
+    padding-top: 10rem;
+}
+
+.såfunkardet-rubrik{
+    font-size: 1.5rem;
+
+}
+.såfunkardet-beskrivning{
+    font-size: 1rem;
+    padding-bottom: 1rem;
 }

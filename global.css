@@ -3,7 +3,10 @@ body{
     color: white;
     font-family: "Inter", "Plus Jakarta Sans", "Poppins";
     padding: 5rem;
-    font-weight: normal;
+
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 20px;
     
 }
 
