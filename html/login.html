@@ -3,12 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logga in</title>
+    <meta name="theme-color" content="#f4fbf6">
+    <title>Logga in | Ticshare UF</title>
 
-    <link rel="stylesheet" href="../global.css"></link>
-    <link rel="stylesheet" href="CSS/login.css"></link>
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="../CSS/login.css">
 </head>
-<body>
 
+
+<body class="login">
+    <main class="inloggningssida">
+        <!-- <a class="tillbaka" href="../index.html" aria-label="Tillbaka till Ticshare UF">
+            <img src="../bilder/Ticshare-logga.png" alt="Ticshare UF">
+            <span>Tillbaka till startsidan</span>
+        </a> -->
+
+        <section class="inloggningskort" aria-label="Ticshare UF konto">
+            <div class="kort-varumarke">
+                <img src="../bilder/Ticshare-logga.png" alt="Ticshare UF">
+                <div>
+                    <p class="varumarkesnamn">Ticshare UF</p>
+                    <p class="varumarkestext">Matchdagar börjar här.</p>
+                </div>
+            </div>
+
+            <input class="flikval" type="radio" name="konto-flik" id="flik-logga-in" checked>
+            <input class="flikval" type="radio" name="konto-flik" id="flik-skapa-konto">
+            <div class="flikar" role="group" aria-label="Välj inloggning eller skapa konto">
+                <label for="flik-logga-in">Logga in</label>
+                <label for="flik-skapa-konto">Skapa konto</label>
+            </div>
+
+            <div class="konto-innehall">
+                <section class="konto-panel panel-logga-in">
+                    <h1 id="kort-rubrik">Välkommen tillbaka</h1>
+                    <p class="introtext">Logga in för att hitta och hantera dina biljetter.</p>
+                    <div role="group" aria-label="Inloggningsuppgifter">
+
+                        <div class="formfalt">
+                            <label for="inloggning-epost">E-post</label>
+                            <input id="inloggning-epost" name="email" type="email" autocomplete="email" placeholder="namn@exempel.se" required>
+                        </div>
+
+
+                        <div class="formfalt">
+                            <label for="inloggning-losenord">Lösenord</label>
+                            <input id="inloggning-losenord" name="password" type="password" autocomplete="current-password" placeholder="Ange ditt lösenord" required>
+                        </div>
+
+
+                        <button class="skicka-knapp" type="button">Logga in</button>
+                    </div>
+
+                    <p class="byt-lage">Ny på Ticshare? <label for="flik-skapa-konto">Skapa konto</label></p>
+                </section>
+
+
+                <section class="konto-panel panel-skapa-konto">
+                    <h1>Skapa ditt konto</h1>
+                    <p class="introtext">Kom igång och hitta din nästa matchupplevelse.</p>
+                    <div role="group" aria-label="Uppgifter för nytt konto">
+
+                        <div class="formfalt">
+                            <label for="konto-namn">Namn</label>
+                            <input id="konto-namn" name="name" type="text" autocomplete="name" placeholder="Ditt namn" required>
+                        </div>
+
+                        <div class="formfalt">
+                            <label for="konto-epost">E-post</label>
+                            <input id="konto-epost" name="email" type="email" autocomplete="email" placeholder="namn@exempel.se" required>
+                        </div>
+
+                        <div class="formfalt">
+                            <label for="konto-losenord">Lösenord</label>
+                            <input id="konto-losenord" name="password" type="password" autocomplete="new-password" placeholder="Minst 8 tecken" minlength="8" required>
+                        </div>
+
+                        <button class="skicka-knapp" type="button">Skapa konto</button>
+                    </div>
+
+                    <p class="byt-lage">Har du redan ett konto? <label for="flik-logga-in">Logga in</label></p>
+                </section>
+            </div>
+        </section>
+
+    </main>
 </body>
 </html>

@@ -1,0 +1,288 @@
+.login{
+    max-width: 11200px;
+}
+
+:root {
+    color-scheme: light;
+    --gron: #32d786;
+    --morkgron: #168653;
+    --text: #202923;
+    --dampad-text: #64736a;
+    --kant: #e0e9e3;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    max-width: none;
+    margin: 0;
+    padding: 24px;
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(ellipse at 12% 12%, rgba(50, 215, 134, 0.13), transparent 34%),
+        radial-gradient(ellipse at 90% 85%, rgba(41, 160, 112, 0.10), transparent 35%),
+        #f7faf8;
+}
+
+.inloggningssida {
+    min-height: calc(100vh - 48px);
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+/* .tillbaka {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px 8px 8px;
+    border: 1px solid var(--kant);
+    border-radius: 14px;
+    color: var(--dampad-text);
+    font-size: 0.9rem;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 3px 12px rgba(34, 79, 54, 0.05);
+    transition: border-color 160ms ease, color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+
+    
+}
+
+.tillbaka:hover {
+    color: var(--morkgron);
+    border-color: rgba(50, 215, 134, 0.65);
+    background: #fff;
+    box-shadow: 0 5px 16px rgba(34, 79, 54, 0.10);
+}
+
+.tillbaka img {
+    display: block;
+    width: 112px;
+    height: 72px;
+    object-fit: contain;
+} */
+
+.inloggningskort {
+    width: min(100%, 420px);
+    padding: 32px;
+    border: 1px solid rgba(224, 233, 227, 0.9);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 20px 60px rgba(34, 79, 54, 0.11);
+}
+
+.kort-varumarke {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.kort-varumarke img {
+    display: block;
+    width: 76px;
+    height: 54px;
+    object-fit: contain;
+}
+
+.kort-varumarke p {
+    margin: 0;
+}
+
+.varumarkesnamn {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.varumarkestext {
+    margin-top: 3px !important;
+    color: var(--dampad-text);
+    font-size: 0.82rem;
+}
+
+.flikval {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+
+.flikar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    padding: 4px;
+    margin-bottom: 27px;
+    border-radius: 12px;
+    background: #f0f4f1;
+}
+
+.flikar label {
+    padding: 10px 12px;
+    border-radius: 9px;
+    color: var(--dampad-text);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+#flik-logga-in:checked ~ .flikar label[for="flik-logga-in"],
+#flik-skapa-konto:checked ~ .flikar label[for="flik-skapa-konto"] {
+    color: var(--text);
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(32, 41, 35, 0.09);
+}
+
+#flik-logga-in:focus-visible ~ .flikar label[for="flik-logga-in"],
+#flik-skapa-konto:focus-visible ~ .flikar label[for="flik-skapa-konto"] {
+    outline: 3px solid rgba(50, 215, 134, 0.55);
+    outline-offset: 2px;
+}
+
+.konto-panel h1 {
+    margin: 0;
+    color: var(--text);
+    font-size: 1.65rem;
+    letter-spacing: -0.04em;
+}
+
+.introtext {
+    margin: 8px 0 23px;
+    color: var(--dampad-text);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.formfalt {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 17px;
+}
+
+.formfalt label {
+    font-size: 0.86rem;
+    font-weight: 600;
+}
+
+.formfalt input {
+    width: 100%;
+    min-height: 46px;
+    padding: 0 13px;
+    border: 1px solid var(--kant);
+    border-radius: 10px;
+    outline: none;
+    color: var(--text);
+    background: #fff;
+    font: inherit;
+    font-size: 0.92rem;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.formfalt input::placeholder {
+    color: #a0aca4;
+}
+
+.formfalt input:focus {
+    border-color: var(--gron);
+    box-shadow: 0 0 0 3px rgba(50, 215, 134, 0.16);
+}
+
+.skicka-knapp {
+    width: 100%;
+    min-height: 48px;
+    margin-top: 4px;
+    border: 0;
+    border-radius: 10px;
+    color: #123b27;
+    background: var(--gron);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.skicka-knapp:hover {
+    background: #24c879;
+}
+
+.skicka-knapp:active {
+    transform: translateY(1px);
+}
+
+.byt-lage {
+    margin: 20px 0 0;
+    color: var(--dampad-text);
+    font-size: 0.86rem;
+    text-align: center;
+}
+
+.byt-lage label {
+    color: var(--morkgron);
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.byt-lage label:hover {
+    text-decoration: underline;
+}
+
+.sidfotstext {
+    margin: 25px 0 0;
+    color: #839087;
+    font-size: 0.78rem;
+    text-align: center;
+}
+
+.panel-skapa-konto {
+    display: none;
+}
+
+#flik-skapa-konto:checked ~ .konto-innehall .panel-logga-in {
+    display: none;
+}
+
+#flik-skapa-konto:checked ~ .konto-innehall .panel-skapa-konto {
+    display: block;
+}
+
+@media (max-width: 520px) {
+    body {
+        padding: 20px 16px;
+    }
+
+    .inloggningssida {
+        min-height: calc(100vh - 40px);
+        padding-top: 54px;
+    }
+
+    .tillbaka {
+        top: 0;
+    }
+
+    .inloggningskort {
+        padding: 26px 22px;
+        border-radius: 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
