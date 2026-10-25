@@ -96,3 +96,8 @@ C:\Users\andtra1\OneDrive - Karlskoga Kommun\Webbsidor till UF företagare\Ticsh
 C:\Users\andtra1\OneDrive - Karlskoga Kommun\Webbsidor till UF företagare\Ticshare-UF\UFWebsite\obj\Debug\net10.0\UFWebsite.pdb
 C:\Users\andtra1\OneDrive - Karlskoga Kommun\Webbsidor till UF företagare\Ticshare-UF\UFWebsite\obj\Debug\net10.0\UFWebsite.genruntimeconfig.cache
 C:\Users\andtra1\OneDrive - Karlskoga Kommun\Webbsidor till UF företagare\Ticshare-UF\UFWebsite\obj\Debug\net10.0\ref\UFWebsite.dll
+C:\Users\andtra1\OneDrive - Karlskoga Kommun\Webbsidor till UF företagare\Ticshare-UF\UFWebsite\obj\Debug\net10.0\compressed\x63i6bdare-{0}-o7kjj8lfn5-o7kjj8lfn5.gz
+C:\Users\andtra1\OneDrive - Karlskoga Kommun\Webbsidor till UF företagare\Ticshare-UF\UFWebsite\obj\Debug\net10.0\compressed\2yhpg0j566-{0}-52eyve24yw-52eyve24yw.gz
+C:\Users\andtra1\OneDrive - Karlskoga Kommun\Webbsidor till UF företagare\Ticshare-UF\UFWebsite\obj\Debug\net10.0\compressed\4r74l4g4gu-{0}-5l9szb8n92-5l9szb8n92.gz
+C:\Users\andtra1\OneDrive - Karlskoga Kommun\Webbsidor till UF företagare\Ticshare-UF\UFWebsite\obj\Debug\net10.0\compressed\5hdes7pc6e-{0}-pu0zi9b3t0-pu0zi9b3t0.gz
+C:\Users\andtra1\OneDrive - Karlskoga Kommun\Webbsidor till UF företagare\Ticshare-UF\UFWebsite\obj\Debug\net10.0\compressed\mddkvs6pe1-{0}-igvgw5a3rb-igvgw5a3rb.gz

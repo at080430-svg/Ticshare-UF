@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UFWebsite")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f53a48d8df224fb557093cfeaabade1c957d41b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6707b362793a83304f00862554213c1e0d5f56ea")]
 [assembly: System.Reflection.AssemblyProductAttribute("UFWebsite")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UFWebsite")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
