@@ -1,0 +1,42 @@
+@page
+@model UFWebsite.Pages.Admin.ListingsModel
+@{ ViewData["Title"] = "Biljetter"; }
+
+<h1 class="h3 mb-3">Biljetter att granska</h1>
+
+<table class="table align-middle">
+    <thead><tr><th>Match</th><th>Säljare</th><th>Plats</th><th>Pris</th><th>Ordinarie</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var l in Model.Pending)
+    {
+        <tr>
+            <td>@l.Match.HomeClub.Name – @l.Match.AwayClub.Name<br /><small>@l.Match.StartTime.ToString("yyyy-MM-dd HH:mm")</small></td>
+            <td>@l.Seller.FullName<br /><small>@l.Seller.Email</small></td>
+            <td>Kort <code>@l.SeasonCard.CardNumber</code><br /><small>Sektion @l.SeasonCard.Section, rad @l.SeasonCard.Row, plats @l.SeasonCard.Seat</small></td>
+            <td>@l.Price kr</td>
+            <td>@l.FaceValue kr</td>
+            <td>
+                <form method="post" asp-page-handler="Approve" asp-route-id="@l.Id" class="d-inline">
+                    <button class="btn btn-success btn-sm">Godkänn</button>
+                </form>
+                <form method="post" asp-page-handler="Reject" asp-route-id="@l.Id" class="d-inline-flex gap-1 mt-1">
+                    <input name="reason" class="form-control form-control-sm" placeholder="Orsak" required />
+                    <button class="btn btn-outline-danger btn-sm">Neka</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+@if (Model.Pending.Count == 0) { <p>Inget att granska just nu.</p> }
+
+<h2 class="h5 mt-5">Alla biljetter</h2>
+<table class="table table-sm">
+    <thead><tr><th>#</th><th>Match</th><th>Säljare</th><th>Pris</th><th>Status</th></tr></thead>
+    <tbody>
+    @foreach (var l in Model.All)
+    {
+        <tr><td>@l.Id</td><td>@l.Match.HomeClub.Name – @l.Match.AwayClub.Name</td><td>@l.Seller.Email</td><td>@l.Price kr</td><td>@l.Status</td></tr>
+    }
+    </tbody>
+</table>

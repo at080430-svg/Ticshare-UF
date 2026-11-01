@@ -1,0 +1,35 @@
+@page
+@model UFWebsite.Pages.Admin.SeasonCardsModel
+@using UFWebsite.Models
+@{ ViewData["Title"] = "Säsongskort"; }
+
+<h1 class="h3 mb-3">Säsongskort att granska</h1>
+<p class="text-muted">Kontrollera kortnumret mot klubbens system (lista, API eller genom att kontakta klubben)
+innan du godkänner. "Finns i klubbens lista" betyder att numret finns i en lista som klubben skickat.</p>
+
+<table class="table align-middle">
+    <thead><tr><th>Inskickat</th><th>Säljare</th><th>Klubb</th><th>Kortnummer</th><th>Plats</th><th>Kontroll</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var c in Model.Pending)
+    {
+        <tr>
+            <td>@c.Card.SubmittedAt.ToString("yyyy-MM-dd HH:mm")</td>
+            <td>@c.Card.User.FullName<br /><small>@c.Card.User.Email</small></td>
+            <td>@c.Card.Club.Name<br /><small>Säsong @c.Card.Season · @c.Card.Club.VerificationMethod</small></td>
+            <td><code>@c.Card.CardNumber</code></td>
+            <td>Sektion @c.Card.Section, rad @c.Card.Row, plats @c.Card.Seat</td>
+            <td>@(c.InClubList ? "✅ Finns i klubbens lista" : "Ingen lista / ej hittad")</td>
+            <td>
+                <form method="post" asp-page-handler="Approve" asp-route-id="@c.Card.Id" class="d-inline">
+                    <button class="btn btn-success btn-sm">Godkänn</button>
+                </form>
+                <form method="post" asp-page-handler="Reject" asp-route-id="@c.Card.Id" class="d-inline-flex gap-1 mt-1">
+                    <input name="reason" class="form-control form-control-sm" placeholder="Orsak" required />
+                    <button class="btn btn-outline-danger btn-sm">Neka</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+@if (Model.Pending.Count == 0) { <p>Inget att granska just nu.</p> }

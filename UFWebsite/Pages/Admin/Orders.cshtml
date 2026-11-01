@@ -1,0 +1,95 @@
+@page
+@model UFWebsite.Pages.Admin.OrdersModel
+@{ ViewData["Title"] = "Ordrar"; }
+
+<h1 class="h3 mb-3">Ordrar &amp; Swish</h1>
+
+<h2 class="h5">1. Väntar på betalning</h2>
+<p class="text-muted">Jämför med Swish-appen: köparen ska ha skrivit referensen i meddelandet och swishat exakt rätt belopp.</p>
+<table class="table align-middle">
+    <thead><tr><th>Referens</th><th>Köpare</th><th>Match</th><th>Belopp</th><th>Skapad (UTC)</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var o in Model.AwaitingPayment)
+    {
+        <tr>
+            <td><code>@o.Reference</code></td>
+            <td>@o.Buyer.FullName<br /><small>@o.Buyer.Email</small></td>
+            <td>@o.Listing.Match.HomeClub.Name – @o.Listing.Match.AwayClub.Name</td>
+            <td>@o.TotalAmount kr</td>
+            <td>@o.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+            <td>
+                <form method="post" asp-page-handler="ConfirmPayment" asp-route-id="@o.Id" class="d-flex gap-1">
+                    <input name="amount" class="form-control form-control-sm" style="width:7rem" placeholder="Belopp" required />
+                    <input name="swishReference" class="form-control form-control-sm" style="width:9rem" placeholder="Swish-ref" />
+                    <button class="btn btn-success btn-sm">Betalning mottagen</button>
+                </form>
+                <form method="post" asp-page-handler="Cancel" asp-route-id="@o.Id" class="mt-1">
+                    <button class="btn btn-link btn-sm text-danger p-0">Avbryt (betalade aldrig)</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2 class="h5 mt-4">2. Betalda, väntar på biljettöverföring</h2>
+<table class="table align-middle">
+    <thead><tr><th>Referens</th><th>Köpare</th><th>Säljare</th><th>Match</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var o in Model.InProgress)
+    {
+        <tr>
+            <td><code>@o.Reference</code></td>
+            <td>@o.Buyer.FullName<br /><small>@o.Buyer.Email</small></td>
+            <td>@o.Listing.Seller.FullName<br /><small>@o.Listing.Seller.Email</small></td>
+            <td>@o.Listing.Match.HomeClub.Name – @o.Listing.Match.AwayClub.Name<br /><small>@o.Listing.Match.StartTime.ToString("yyyy-MM-dd HH:mm")</small></td>
+            <td>@o.Status</td>
+            <td>
+                @if (o.Status == UFWebsite.Models.OrderStatus.TicketSent)
+                {
+                    <form method="post" asp-page-handler="Complete" asp-route-id="@o.Id" class="d-inline">
+                        <button class="btn btn-outline-success btn-sm">Markera levererad</button>
+                    </form>
+                }
+                <form method="post" asp-page-handler="Refund" asp-route-id="@o.Id" class="d-flex gap-1 mt-1">
+                    <input name="reason" class="form-control form-control-sm" placeholder="Orsak till återbetalning" required />
+                    <button class="btn btn-outline-danger btn-sm">Återbetala</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2 class="h5 mt-4">3. Matchen är spelad: betala ut till säljaren</h2>
+<table class="table align-middle">
+    <thead><tr><th>Referens</th><th>Säljare</th><th>Swish till</th><th>Belopp</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var o in Model.ReadyForPayout)
+    {
+        <tr>
+            <td><code>@o.Reference</code></td>
+            <td>@o.Listing.Seller.FullName</td>
+            <td>@o.Listing.Seller.SwishNumber</td>
+            <td>@o.TicketPrice kr</td>
+            <td>
+                <form method="post" asp-page-handler="PaidOut" asp-route-id="@o.Id" class="d-flex gap-1">
+                    <input name="swishReference" class="form-control form-control-sm" placeholder="Swish-ref" />
+                    <button class="btn btn-primary btn-sm">Utbetald</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2 class="h5 mt-5">Senaste 100 ordrarna</h2>
+<table class="table table-sm">
+    <thead><tr><th>Referens</th><th>Köpare</th><th>Belopp</th><th>Status</th><th>Anteckning</th></tr></thead>
+    <tbody>
+    @foreach (var o in Model.Recent)
+    {
+        <tr><td><code>@o.Reference</code></td><td>@o.Buyer.Email</td><td>@o.TotalAmount kr</td><td>@o.Status</td><td>@o.AdminNote</td></tr>
+    }
+    </tbody>
+</table>

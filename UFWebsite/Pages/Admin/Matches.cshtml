@@ -1,0 +1,77 @@
+@page
+@model UFWebsite.Pages.Admin.MatchesModel
+@using UFWebsite.Models
+@{ ViewData["Title"] = "Matcher"; }
+
+<h1 class="h3 mb-3">Matcher &amp; klubbar</h1>
+
+<div class="row g-4">
+    <div class="col-md-6">
+        <h2 class="h5">Ny match</h2>
+        <form method="post" asp-page-handler="AddMatch" class="vstack gap-2">
+            <select name="homeClubId" class="form-select" required>
+                <option value="">Hemmalag</option>
+                @foreach (var c in Model.Clubs) { <option value="@c.Id">@c.Name</option> }
+            </select>
+            <select name="awayClubId" class="form-select" required>
+                <option value="">Bortalag</option>
+                @foreach (var c in Model.Clubs) { <option value="@c.Id">@c.Name</option> }
+            </select>
+            <input name="startTime" type="datetime-local" class="form-control" required />
+            <input name="arena" class="form-control" placeholder="Arena" required />
+            <input name="competition" class="form-control" placeholder="Serie, t.ex. SHL" />
+            <button class="btn btn-primary">Lägg till (opublicerad)</button>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <h2 class="h5">Ny klubb</h2>
+        <form method="post" asp-page-handler="AddClub" class="vstack gap-2">
+            <input name="name" class="form-control" placeholder="Namn" required />
+            <select name="sport" class="form-select">
+                <option>Fotboll</option><option>Ishockey</option><option>Basket</option><option>Innebandy</option>
+            </select>
+            <input name="city" class="form-control" placeholder="Stad" required />
+            <label class="form-check"><input name="allowsResale" type="checkbox" value="true" class="form-check-input" /> Klubben tillåter vidareförsäljning</label>
+            <input name="resaleRules" class="form-control" placeholder="Regler, t.ex. max ordinarie pris" />
+            <select name="verificationMethod" class="form-select">
+                @foreach (var m in Enum.GetValues<VerificationMethod>()) { <option>@m</option> }
+            </select>
+            <button class="btn btn-primary">Lägg till klubb</button>
+        </form>
+    </div>
+</div>
+
+<h2 class="h5 mt-5">Alla matcher</h2>
+<table class="table align-middle">
+    <thead><tr><th>Tid</th><th>Match</th><th>Arena</th><th>Biljetter</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+    @foreach (var m in Model.Matches)
+    {
+        <tr>
+            <td>@m.StartTime.ToString("yyyy-MM-dd HH:mm")</td>
+            <td>@m.HomeClub.Name – @m.AwayClub.Name</td>
+            <td>@m.Arena</td>
+            <td>@m.Listings.Count</td>
+            <td>@(m.IsPublished ? "Publicerad" : "Dold")</td>
+            <td>
+                <form method="post" asp-page-handler="TogglePublish" asp-route-id="@m.Id">
+                    <button class="btn btn-sm @(m.IsPublished ? "btn-outline-secondary" : "btn-success")">
+                        @(m.IsPublished ? "Dölj" : "Publicera")
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2 class="h5 mt-5">Klubbar</h2>
+<table class="table table-sm">
+    <thead><tr><th>Namn</th><th>Sport</th><th>Vidareförsäljning</th><th>Verifiering</th></tr></thead>
+    <tbody>
+    @foreach (var c in Model.Clubs)
+    {
+        <tr><td>@c.Name</td><td>@c.Sport</td><td>@(c.AllowsResale ? "Ja" : "Nej") @c.ResaleRules</td><td>@c.VerificationMethod</td></tr>
+    }
+    </tbody>
+</table>

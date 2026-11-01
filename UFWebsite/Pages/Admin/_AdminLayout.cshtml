@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>@ViewData["Title"] - Ticshare Admin</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    @if (User.IsInRole("Admin"))
+    {
+        <nav class="navbar navbar-expand bg-dark navbar-dark mb-4">
+            <div class="container">
+                <a class="navbar-brand" asp-page="/Admin/Index">Ticshare Admin</a>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" asp-page="/Admin/SeasonCards">Säsongskort</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-page="/Admin/Listings">Biljetter</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-page="/Admin/Orders">Ordrar &amp; Swish</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-page="/Admin/Matches">Matcher &amp; klubbar</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-page="/Admin/Users">Användare</a></li>
+                </ul>
+                <form method="post" asp-page="/Admin/Login" asp-page-handler="Logout">
+                    <button class="btn btn-outline-light btn-sm">Logga ut</button>
+                </form>
+            </div>
+        </nav>
+    }
+    <main class="container">
+        @if (TempData["Message"] is string message)
+        {
+            <div class="alert alert-info">@message</div>
+        }
+        @RenderBody()
+    </main>
+</body>
+</html>

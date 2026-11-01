@@ -1,0 +1,30 @@
+@page
+@model UFWebsite.Pages.Admin.IndexModel
+@{ ViewData["Title"] = "Översikt"; }
+
+<h1 class="h3 mb-4">Översikt</h1>
+
+<div class="row g-3 mb-4">
+    <div class="col"><a asp-page="/Admin/SeasonCards" class="card card-body text-decoration-none">
+        <div class="fs-2">@Model.CardsToReview</div>säsongskort att granska</a></div>
+    <div class="col"><a asp-page="/Admin/Listings" class="card card-body text-decoration-none">
+        <div class="fs-2">@Model.ListingsToReview</div>biljetter att granska</a></div>
+    <div class="col"><a asp-page="/Admin/Orders" class="card card-body text-decoration-none">
+        <div class="fs-2">@Model.AwaitingPayment</div>väntar på Swish</a></div>
+    <div class="col"><a asp-page="/Admin/Orders" asp-route-show="payout" class="card card-body text-decoration-none">
+        <div class="fs-2">@Model.ReadyForPayout</div>säljare att betala ut till</a></div>
+</div>
+
+<h2 class="h5">Senaste inloggningar</h2>
+<table class="table table-sm">
+    <thead><tr><th>Tid (UTC)</th><th>E-post</th><th>Resultat</th></tr></thead>
+    <tbody>
+    @foreach (var e in Model.RecentLogins)
+    {
+        <tr class="@(e.Succeeded ? "" : "table-warning")">
+            <td>@e.At.ToString("yyyy-MM-dd HH:mm")</td><td>@e.Email</td>
+            <td>@(e.Succeeded ? "OK" : "Misslyckad")</td>
+        </tr>
+    }
+    </tbody>
+</table>

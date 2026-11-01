@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match | Ticshare UF</title>
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/start.css">
+    <script src="js/api.js" defer></script>
+    <script src="js/match.js" defer></script>
+</head>
+<body>
+    <p><a href="index.html">← Alla matcher</a></p>
+    <h1 id="rubrik">Laddar…</h1>
+    <p id="info"></p>
+
+    <h2>Biljetter till salu</h2>
+    <div id="biljetter"></div>
+
+    <!-- Shown after the buyer clicks "Köp" -->
+    <section id="betalning" hidden>
+        <h2>Betala med Swish</h2>
+        <p>Swisha <strong id="belopp"></strong> till <strong id="swishnummer"></strong>.</p>
+        <p>Skriv <strong id="referens"></strong> i meddelandet, annars kan vi inte koppla betalningen till ditt köp.</p>
+        <p>Betala före <strong id="deadline"></strong>, annars släpps biljetten till andra köpare.</p>
+        <p>När vi sett betalningen skickar säljaren biljetten till dig via klubbens app. Du hittar köpet under <a href="mina-sidor.html">Mina sidor</a>.</p>
+        <button id="simulera" hidden>Simulera betalning (bara under utveckling)</button>
+    </section>
+</body>
+</html>
