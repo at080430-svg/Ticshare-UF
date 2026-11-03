@@ -70,7 +70,8 @@ nav {
 
 .välja{
     display: flex;
-    justify-content: left;
+    justify-content: flex-start;
+    flex-wrap: wrap;
     gap: 2rem;
     margin-top: 1rem;
 }
@@ -93,28 +94,122 @@ nav {
     background-color: rgb(67, 67, 160);
 }
 
+.såfunkardet h2{
+    margin-bottom: 1.5rem;
+}
+
 .såfunkardet{
-    padding-top: 10rem;
-    font-size: 2.5rem;
+    margin-top: 15rem;
 }
 
-.såfunkardet-innehåll{
-    max-width: 1000px;
-
-    display: flex;
-    flex-direction: column;
-    
+.såfunkardet-rutor{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
 }
 
-.därför-rubrik{
-    font-size: 1.5rem;
-    border-left: 3px solid #32d786;
-    padding-left: 1rem;
+.såfunkardet-ruta1{
+    padding: 1.5rem;
+    border: 1px solid #dfe7e2;
+    border-top: 4px solid #32d786;
+    border-radius: 0.75rem;
 }
 
-.därför-beskrivning{
-    font-size: 1.2rem;
-    padding-bottom: 1rem;
-    margin-top: -0.8rem;
-    padding-left: 1rem;
+.såfunkardet-ruta2{
+    padding: 1.5rem;
+    border: 1px solid #dfe7e2;
+    border-top: 4px solid #1b6843;
+    border-radius: 0.75rem;
+}
+
+.såfunkardet-ruta1 h3, .såfunkardet-ruta2 h3{
+    margin-top: 0;
+}
+
+.såfunkardet-ruta1 p, .såfunkardet-ruta2 p{
+    margin-bottom: 0;
+    font-size: 1rem;
+}
+
+.såfunkardet-ruta1, .såfunkardet-ruta2{
+    margin-bottom: 4rem;
+}
+
+.footer-innehåll{
+    width: 100%;
+    border-top: 0.05rem solid grey;
+    padding-top: 1rem;
+}
+
+footer p{
+    font-size: 1rem;
+    color: black;
+}
+
+@media (max-width: 700px){
+    body{
+        padding: 0 1rem;
+    }
+
+    .toppen{
+        margin-bottom: 4rem;
+    }
+
+    .logo{
+        width: 6.5rem;
+        margin-left: 0;
+    }
+
+    .toppen nav{
+        position: static;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 0.75rem 1rem;
+        margin-top: 1rem;
+        font-size: 1rem;
+    }
+
+    .login{
+        position: static;
+        margin: 0;
+        padding: 0.4rem 0.8rem;
+    }
+
+    header{
+        font-size: clamp(1.5rem, 7vw, 2.1rem);
+    }
+
+    .underbeskrivning{
+        font-size: 1.1rem;
+    }
+
+    .kommande-events{
+        margin-top: 3.5rem;
+        font-size: 1.7rem;
+    }
+
+    .välja{
+        gap: 0.75rem;
+    }
+
+    .välj{
+        margin: 0;
+    }
+
+    .såfunkardet{
+        margin: 4rem auto;
+    }
+
+    .såfunkardet-rutor{
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .såfunkardet-ruta{
+        padding: 1.25rem;
+    }
+
+    .footer-innehåll{
+        overflow-wrap: anywhere;
+    }
 }

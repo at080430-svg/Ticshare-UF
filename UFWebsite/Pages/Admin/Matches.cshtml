@@ -2,9 +2,9 @@
 @model UFWebsite.Pages.Admin.MatchesModel
 @using UFWebsite.Models
 @{ ViewData["Title"] = "Matcher"; }
-
+ 
 <h1 class="h3 mb-3">Matcher &amp; klubbar</h1>
-
+ 
 <div class="row g-4">
     <div class="col-md-6">
         <h2 class="h5">Ny match</h2>
@@ -40,7 +40,7 @@
         </form>
     </div>
 </div>
-
+ 
 <h2 class="h5 mt-5">Alla matcher</h2>
 <table class="table align-middle">
     <thead><tr><th>Tid</th><th>Match</th><th>Arena</th><th>Biljetter</th><th>Status</th><th></th></tr></thead>
@@ -59,19 +59,34 @@
                         @(m.IsPublished ? "Dölj" : "Publicera")
                     </button>
                 </form>
+                @if (m.Listings.Count == 0)
+                {
+                    <form method="post" asp-page-handler="DeleteMatch" asp-route-id="@m.Id"
+                          onsubmit="return confirm('Ta bort matchen?');">
+                        <button class="btn btn-sm btn-outline-danger mt-1">Ta bort</button>
+                    </form>
+                }
             </td>
         </tr>
     }
     </tbody>
 </table>
-
+ 
 <h2 class="h5 mt-5">Klubbar</h2>
 <table class="table table-sm">
-    <thead><tr><th>Namn</th><th>Sport</th><th>Vidareförsäljning</th><th>Verifiering</th></tr></thead>
+    <thead><tr><th>Namn</th><th>Sport</th><th>Vidareförsäljning</th><th>Verifiering</th><th></th></tr></thead>
     <tbody>
     @foreach (var c in Model.Clubs)
     {
-        <tr><td>@c.Name</td><td>@c.Sport</td><td>@(c.AllowsResale ? "Ja" : "Nej") @c.ResaleRules</td><td>@c.VerificationMethod</td></tr>
+        <tr><td>@c.Name</td><td>@c.Sport</td><td>@(c.AllowsResale ? "Ja" : "Nej") @c.ResaleRules</td><td>@c.VerificationMethod</td>
+            <td>
+                <form method="post" asp-page-handler="DeleteClub" asp-route-id="@c.Id"
+                      onsubmit="return confirm('Ta bort klubben?');">
+                    <button class="btn btn-sm btn-outline-danger">Ta bort</button>
+                </form>
+            </td>
+        </tr>
     }
     </tbody>
 </table>
+ 

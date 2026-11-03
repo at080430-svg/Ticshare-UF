@@ -1,0 +1,130 @@
+/* Mina sidor: same colours as the login page */
+:root {
+    --gron: #32d786;
+    --morkgron: #168653;
+    --text: #202923;
+    --dampad-text: #64736a;
+    --kant: #e0e9e3;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7faf8;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin: 40px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--kant);
+}
+
+p {
+    font-size: 1rem;
+    color: var(--dampad-text);
+}
+
+/* Each purchase, sale and season card is a white card */
+.rad {
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    border: 1px solid var(--kant);
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 3px 12px rgba(34, 79, 54, 0.05);
+}
+
+.rad p {
+    margin: 4px 0;
+}
+
+/* Forms: one field per line */
+form {
+    display: grid;
+    gap: 12px;
+    padding: 20px;
+    border: 1px solid var(--kant);
+    border-radius: 18px;
+    background: #fff;
+}
+
+label {
+    display: grid;
+    gap: 6px;
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+/* The checkbox sits next to its text instead of above it */
+label:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+input,
+select {
+    padding: 10px 12px;
+    border: 1px solid var(--kant);
+    border-radius: 10px;
+    font: inherit;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--gron);
+    box-shadow: 0 0 0 3px rgba(50, 215, 134, 0.2);
+}
+
+button {
+    justify-self: start;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 10px;
+    background: var(--morkgron);
+    color: #fff;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--gron);
+}
+
+#logga-ut {
+    background: transparent;
+    color: var(--dampad-text);
+    border: 1px solid var(--kant);
+}
+
+#radera {
+    background: #c0392b;
+}
+
+#radera:hover {
+    background: #e74c3c;
+}
+
+a {
+    color: var(--dampad-text);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--morkgron);
+}
