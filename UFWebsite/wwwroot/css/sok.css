@@ -1,0 +1,73 @@
+/* Search bar on the start page. Change the colours here to match your design. */
+.sokruta {
+    display: flex;
+    gap: 1rem;
+    padding: 0.9rem;
+    margin: 1.5rem 0 5rem;
+    border: 1px solid #dfe7e2;
+    border-radius: 1.25rem;
+    background: #ffffff;
+    box-shadow: 0 6px 24px rgba(34, 79, 54, 0.08);
+}
+
+.sokruta input,
+.sokruta select {
+    height: 3.5rem;
+    padding: 0 1.25rem;
+    border: 1px solid #dfe7e2;
+    border-radius: 0.75rem;
+    background: #f7faf8;
+    color: #202923;
+    font: inherit;
+    font-size: 1.1rem;
+}
+
+.sokruta input {
+    flex: 2;
+    min-width: 0;
+}
+
+.sokruta input::placeholder {
+    color: #7d8a83;
+}
+
+.sokruta select {
+    flex: 1;
+    cursor: pointer;
+}
+
+.sokruta input:focus,
+.sokruta select:focus {
+    outline: none;
+    border-color: #32d786;
+    box-shadow: 0 0 0 3px rgba(50, 215, 134, 0.2);
+}
+
+.sokruta button {
+    height: 3.5rem;
+    padding: 0 2rem;
+    border: none;
+    border-radius: 0.75rem;
+    background: #32d786;
+    color: #202923;
+    font: inherit;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sokruta button:hover {
+    background: #2bc078;
+}
+
+/* Phones: put the fields on top of each other */
+@media (max-width: 700px) {
+    .sokruta {
+        flex-direction: column;
+    }
+
+    .sokruta input,
+    .sokruta select {
+        flex: none;
+    }
+}

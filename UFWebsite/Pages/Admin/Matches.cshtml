@@ -19,7 +19,7 @@
             </select>
             <input name="startTime" type="datetime-local" class="form-control" required />
             <input name="arena" class="form-control" placeholder="Arena" required />
-            <input name="competition" class="form-control" placeholder="Serie, t.ex. SHL" />
+            <input name="competition" class="form-control" placeholder="Serie" required/>
             <button class="btn btn-primary">Lägg till (opublicerad)</button>
         </form>
     </div>
@@ -32,7 +32,7 @@
             </select>
             <input name="city" class="form-control" placeholder="Stad" required />
             <label class="form-check"><input name="allowsResale" type="checkbox" value="true" class="form-check-input" /> Klubben tillåter vidareförsäljning</label>
-            <input name="resaleRules" class="form-control" placeholder="Regler, t.ex. max ordinarie pris" />
+            <input name="resaleRules" class="form-control" placeholder="Regler, t.ex max ordinarie pris" />
             <select name="verificationMethod" class="form-select">
                 @foreach (var m in Enum.GetValues<VerificationMethod>()) { <option>@m</option> }
             </select>

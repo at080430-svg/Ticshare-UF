@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="css/start.css">
+    <link rel="stylesheet" href="css/sok.css">
 
     <script src="js/api.js" defer></script>
     <script src="js/script.js" defer></script>
@@ -35,6 +36,14 @@
 
     <section class="events" id="evenemang">
         <h2 class="kommande-events">Kommande matcher</h2>
+
+        <form class="sokruta" id="sok-form">
+            <input id="sok-text" type="search" placeholder="Sök lag, t.ex. Degerfors IF eller AIK" aria-label="Sök lag">
+            <select id="sok-stad" aria-label="Stad">
+                <option value="">Alla städer</option>
+            </select>
+            <button>Sök</button>
+        </form>
 
             <nav class="välja">
                 <a class="välj">Alla</a>
