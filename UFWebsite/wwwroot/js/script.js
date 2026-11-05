@@ -13,12 +13,41 @@ async function visaMatcher() {
             : "<p>Inga matcher just nu.</p>";
         return;
     }
-    lista.innerHTML = matcher.map(m => `
+    lista.innerHTML = matcher.map(matchkort).join("");
+}
+
+// One match as a ticket-shaped card.
+function matchkort(m) {
+    const kvar = m.ticketsForSale;
+    // Badge in the corner: shows how scarce the tickets are.
+    const etikett = kvar === 0 ? `<span class="etikett etikett-slut">Inga biljetter än</span>`
+        : kvar === 1 ? `<span class="etikett etikett-sista">Sista biljetten</span>`
+        : kvar <= 3 ? `<span class="etikett etikett-fa">Få kvar</span>`
+        : "";
+    const tid = new Date(m.startTime);
+    const dag = tid.toLocaleDateString("sv-SE", { weekday: "short", day: "numeric", month: "short" });
+    const klockslag = tid.toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" });
+    const ordinarie = m.lowestFaceValue > m.lowestPrice ? `<s>${kronor(m.lowestFaceValue)}</s>` : "";
+
+    return `
         <a class="matchkort" href="match.html?id=${m.id}">
-            <h3>${esc(m.home)} – ${esc(m.away)}</h3>
-            <p>${datum(m.startTime)} · ${esc(m.arena)}</p>
-            <p>${m.ticketsForSale > 0 ? `${m.ticketsForSale} biljetter från ${kronor(m.lowestPrice)}` : "Inga biljetter ute än"}</p>
-        </a>`).join("");
+            <div class="matchkort-topp">
+                <span class="matchkort-serie">${esc(m.sport)}${m.competition ? ` · ${esc(m.competition)}` : ""}</span>
+                ${etikett}
+            </div>
+            <h3>${esc(m.home)}</h3>
+            <span class="matchkort-mot">mot</span>
+            <h3>${esc(m.away)}</h3>
+            <p class="matchkort-info">${dag} · ${klockslag}<br>${esc(m.arena)}${m.city ? `, ${esc(m.city)}` : ""}</p>
+            <div class="matchkort-kvar">
+                <span class="kvar-antal">${kvar}</span>
+                <span>${kvar === 1 ? "biljett kvar" : "biljetter kvar"}</span>
+            </div>
+            <div class="matchkort-botten">
+                <span class="matchkort-pris">${kvar > 0 ? `<small>från</small> ${kronor(m.lowestPrice)} ${ordinarie}` : "–"}</span>
+                <span class="matchkort-kop">${kvar > 0 ? "Köp" : "Visa"}</span>
+            </div>
+        </a>`;
 }
 
 // Fill the city dropdown with the cities that have upcoming matches.

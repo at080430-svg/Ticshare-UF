@@ -1,0 +1,169 @@
+/* Match cards on the start page, styled like tickets */
+#matchlista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.matchkort {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1.5rem 0;
+    border-radius: 1.25rem;
+    color: #202923;
+    text-decoration: none;
+    /* White card with a gradient border: the first background fills the inside,
+       the second (the gradient) only shows through the transparent border. */
+    border: 2px solid transparent;
+    background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        linear-gradient(135deg, #32d786 0%, #29a0e0 60%, #4a80ff 100%) border-box;
+    box-shadow: 0 8px 28px rgba(34, 79, 54, 0.08);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.matchkort:hover {
+    color: #202923;
+    transform: translateY(-4px);
+    box-shadow: 0 14px 36px rgba(41, 160, 224, 0.18);
+}
+
+.matchkort-topp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+/* "Fotboll · Allsvenskan" in gradient text, like your heading */
+.matchkort-serie {
+    font-size: 0.95rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #32d786, #29a0e0 60%, #4a80ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.etikett {
+    padding: 0.3rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.etikett-sista {
+    background: #32d786;
+    color: #06120b;
+}
+
+.etikett-fa {
+    background: #fff4d6;
+    color: #8a5a00;
+}
+
+.etikett-slut {
+    background: #eef2ef;
+    color: #64736a;
+}
+
+.matchkort h3 {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1.15;
+}
+
+.matchkort-mot {
+    margin: 0.2rem 0;
+    color: #64736a;
+    font-size: 1rem;
+}
+
+.matchkort .matchkort-info {
+    margin: 0.9rem 0 1.1rem;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: #64736a;
+}
+
+/* The "X biljetter kvar" box */
+.matchkort-kvar {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1.25rem;
+    border-radius: 0.8rem;
+    background: linear-gradient(135deg, rgba(50, 215, 134, 0.12), rgba(74, 128, 255, 0.12));
+    color: #41534c;
+}
+
+.kvar-antal {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #168653;
+}
+
+/* Bottom part of the ticket, separated by a dashed "tear here" line */
+.matchkort-botten {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto -1.5rem 0;
+    padding: 1.1rem 1.5rem 1.25rem;
+    border-top: 2px dashed #dfe7e2;
+}
+
+/* The two half-circle cut-outs on the sides of the ticket */
+.matchkort-botten::before,
+.matchkort-botten::after {
+    content: "";
+    position: absolute;
+    top: -13px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.matchkort-botten::before {
+    left: -13px;
+    box-shadow: inset -2px 0 0 #32d786;
+}
+
+.matchkort-botten::after {
+    right: -13px;
+    box-shadow: inset 2px 0 0 #4a80ff;
+}
+
+.matchkort-pris {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.matchkort-pris small {
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: #64736a;
+}
+
+.matchkort-pris s {
+    margin-left: 0.3rem;
+    font-size: 1rem;
+    font-weight: normal;
+    color: #8a968f;
+}
+
+.matchkort-kop {
+    padding: 0.55rem 1.3rem;
+    border-radius: 2rem;
+    background: linear-gradient(90deg, #32d786, #29a0e0 60%, #4a80ff);
+    color: #ffffff;
+    font-weight: bold;
+}
