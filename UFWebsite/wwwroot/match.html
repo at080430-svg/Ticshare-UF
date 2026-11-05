@@ -6,25 +6,41 @@
     <title>Match | Ticshare UF</title>
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="css/start.css">
+    <link rel="stylesheet" href="css/match.css">
+    
     <script src="js/api.js" defer></script>
     <script src="js/match.js" defer></script>
 </head>
 <body>
-    <p><a href="index.html">← Alla matcher</a></p>
-    <h1 id="rubrik">Laddar…</h1>
-    <p id="info"></p>
+<body>
+    <a class="tillbaka" href="index.html">← Alla matcher</a>
 
-    <h2>Biljetter till salu</h2>
+    <!-- The match itself: filled in by match.js -->
+    <section class="matchhuvud">
+        <span class="matchhuvud-serie" id="serie"></span>
+        <h1 id="rubrik">Laddar…</h1>
+        <p class="matchhuvud-info" id="info"></p>
+        <span class="matchhuvud-kvar" id="kvar"></span>
+    </section>
+
+    <h2 id="biljetter-rubrik">Biljetter till salu</h2>
     <div id="biljetter"></div>
 
     <!-- Shown after the buyer clicks "Köp" -->
-    <section id="betalning" hidden>
+    <section id="betalning" class="betalning" hidden>
         <h2>Betala med Swish</h2>
-        <p>Swisha <strong id="belopp"></strong> till <strong id="swishnummer"></strong>.</p>
-        <p>Skriv <strong id="referens"></strong> i meddelandet, annars kan vi inte koppla betalningen till ditt köp.</p>
-        <p>Betala före <strong id="deadline"></strong>, annars släpps biljetten till andra köpare.</p>
+        <div class="belopp-ruta">
+            <span>Att betala</span>
+            <strong id="belopp"></strong>
+        </div>
+        <ol class="steg">
+            <li>Swisha till <strong id="swishnummer"></strong>.</li>
+            <li>Skriv <strong id="referens" class="referens"></strong> i meddelandet, annars kan vi inte koppla betalningen till ditt köp.</li>
+            <li>Betala före <strong id="deadline"></strong>, annars släpps biljetten till andra köpare.</li>
+        </ol>
         <p>När vi sett betalningen skickar säljaren biljetten till dig via klubbens app. Du hittar köpet under <a href="mina-sidor.html">Mina sidor</a>.</p>
-        <button id="simulera" hidden>Simulera betalning (bara under utveckling)</button>
+        <button id="simulera" class="simulera" hidden>Simulera betalning (bara under utveckling)</button>
     </section>
+</body>
 </body>
 </html>

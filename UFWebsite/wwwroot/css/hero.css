@@ -1,0 +1,89 @@
+/* Front page look: soft glowing background, big bold font and a gradient headline.
+   Loaded last in index.html, so these rules win over start.css. */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap");
+
+/* The background goes on <html>, because <body> is only 1120px wide */
+html {
+    min-height: 100%;
+    background-color: #f3f7f4;
+    background-image:
+        radial-gradient(ellipse 55% 45% at 72% 22%, rgba(74, 128, 255, 0.16), transparent 70%),
+        radial-gradient(ellipse 45% 40% at 8% 8%, rgba(50, 215, 134, 0.14), transparent 70%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body {
+    font-family: "DM Sans", Arial, sans-serif;
+    background: transparent;
+}
+
+/* Big, heavy headline */
+header h1 {
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+}
+
+.huvudrubrik {
+    color: #0d1a14;
+}
+
+/* Second line: your green-to-blue gradient */
+.underrubrik {
+    padding-bottom: 0.1em; /* keeps letters like g and j from being cut off */
+    background: linear-gradient(90deg, #32d786 0%, #29a0e0 55%, #5b84ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.underbeskrivning {
+    margin-top: 1.5rem;
+    font-size: 1.35rem;
+    color: #55665d;
+}
+
+/* Search bar: white box with light grey fields, like the picture */
+.sokruta {
+    border-color: #dfe7e2;
+    background: #ffffff;
+}
+
+.sokruta input,
+.sokruta select {
+    background: #f3f7f4;
+    font-family: inherit;
+}
+
+.sokruta button {
+    background: #14d474;
+    color: #06120b;
+    font-family: inherit;
+}
+
+/* Phones: the three fields wrap nicely */
+@media (max-width: 900px) {
+    .sokruta {
+        flex-wrap: wrap;
+    }
+
+    .sokruta input {
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    /* Stacked on top of each other: keep every field its full height */
+    .sokruta input,
+    .sokruta select {
+        flex: none;
+    }
+}
+
+/* The ticket "notches" on the match cards take the page's background colour */
+.matchkort-botten::before,
+.matchkort-botten::after {
+    background: #f3f7f4;
+}

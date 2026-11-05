@@ -6,6 +6,12 @@
     margin: 2rem 0;
 }
 
+#matchlista > p {
+    grid-column: 1 / -1;
+    max-width: none;
+    color: #47574f;
+}
+
 .matchkort {
     position: relative;
     display: flex;

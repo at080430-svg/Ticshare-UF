@@ -99,7 +99,7 @@ nav {
 }
 
 .såfunkardet{
-    margin-top: 15rem;
+    margin-top: 10rem;
 }
 
 .såfunkardet-rutor{
@@ -141,9 +141,32 @@ nav {
     padding-top: 1rem;
 }
 
+.footer-email{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.email-favicon{
+    width: 1.25rem;
+    height: 1.25rem;
+    object-fit: contain;
+}
+
+footer,
+footer p{
+    font-family: inherit;
+    text-align: center;
+}
+
 footer p{
     font-size: 1rem;
     color: black;
+}
+
+.footer-email p{
+    margin: 0;
 }
 
 @media (max-width: 700px){

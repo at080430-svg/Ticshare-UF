@@ -1,0 +1,256 @@
+/* Match page: same ticket style and gradient as the start page cards */
+* {
+    box-sizing: border-box;
+}
+
+/* "display: grid" below would otherwise win over the hidden attribute */
+[hidden] {
+    display: none !important;
+}
+
+body {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+.tillbaka {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+/* The big match header with a gradient background */
+.matchhuvud {
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    border-radius: 1.5rem;
+    color: #ffffff;
+    background: linear-gradient(135deg, #32d786 0%, #29a0e0 60%, #4a80ff 100%);
+    box-shadow: 0 14px 40px rgba(41, 160, 224, 0.25);
+}
+
+.matchhuvud-serie {
+    font-weight: bold;
+    letter-spacing: 0.03em;
+    opacity: 0.9;
+}
+
+.matchhuvud h1 {
+    margin: 0.5rem 0;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.1;
+}
+
+.matchhuvud .mot {
+    font-size: 0.5em;
+    font-weight: normal;
+    opacity: 0.85;
+}
+
+.matchhuvud .matchhuvud-info {
+    margin: 0 0 1.25rem;
+    color: #ffffff;
+    font-size: 1.15rem;
+}
+
+.matchhuvud-kvar {
+    display: inline-block;
+    padding: 0.45rem 1rem;
+    border-radius: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    color: #168653;
+    font-weight: bold;
+}
+
+/* The list of tickets */
+#biljetter {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.biljett {
+    position: relative;
+    padding: 1.5rem 1.5rem 0;
+    border-radius: 1.25rem;
+    border: 2px solid transparent;
+    background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        linear-gradient(135deg, #32d786 0%, #29a0e0 60%, #4a80ff 100%) border-box;
+    box-shadow: 0 8px 28px rgba(34, 79, 54, 0.08);
+}
+
+.biljett .etikett {
+    position: absolute;
+    top: -0.8rem;
+    right: 1.25rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 0.5rem;
+    background: #32d786;
+    color: #06120b;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+/* Sektion / Rad / Plats boxes */
+.platser {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.platser div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.7rem 0.5rem;
+    border: 1px solid #dfe7e2;
+    border-radius: 0.8rem;
+    background: #f7faf8;
+}
+
+.platser span {
+    font-size: 0.9rem;
+    color: #64736a;
+}
+
+.platser strong {
+    font-size: 1.4rem;
+}
+
+/* Bottom of the ticket, after the dashed "tear here" line */
+.biljett-botten {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 -1.5rem;
+    padding: 1.1rem 1.5rem 1.25rem;
+    border-top: 2px dashed #dfe7e2;
+}
+
+.biljett-botten::before,
+.biljett-botten::after {
+    content: "";
+    position: absolute;
+    top: -13px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.biljett-botten::before {
+    left: -13px;
+    box-shadow: inset -2px 0 0 #32d786;
+}
+
+.biljett-botten::after {
+    right: -13px;
+    box-shadow: inset 2px 0 0 #4a80ff;
+}
+
+.pris {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.biljett-botten s {
+    margin-left: 0.3rem;
+    color: #8a968f;
+}
+
+.biljett-botten small {
+    display: block;
+    margin-top: 0.2rem;
+    color: #64736a;
+}
+
+.biljett button,
+.simulera {
+    padding: 0.65rem 1.5rem;
+    border: none;
+    border-radius: 2rem;
+    background: linear-gradient(90deg, #32d786, #29a0e0 60%, #4a80ff);
+    color: #ffffff;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 160ms ease;
+}
+
+.biljett button:hover,
+.simulera:hover {
+    transform: scale(1.05);
+}
+
+.tomt {
+    padding: 2rem;
+    border: 2px dashed #dfe7e2;
+    border-radius: 1.25rem;
+    text-align: center;
+}
+
+/* Swish payment box after clicking "Köp" */
+.betalning {
+    max-width: 640px;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    border: 2px solid transparent;
+    background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        linear-gradient(135deg, #32d786 0%, #29a0e0 60%, #4a80ff 100%) border-box;
+    box-shadow: 0 8px 28px rgba(34, 79, 54, 0.08);
+}
+
+.betalning h2 {
+    margin-top: 0;
+}
+
+.betalning p,
+.steg li {
+    font-size: 1.1rem;
+    color: #41534c;
+}
+
+.belopp-ruta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, rgba(50, 215, 134, 0.12), rgba(74, 128, 255, 0.12));
+}
+
+.belopp-ruta strong {
+    font-size: 2rem;
+    color: #168653;
+}
+
+.steg {
+    padding-left: 1.25rem;
+}
+
+.steg li {
+    margin-bottom: 0.6rem;
+}
+
+/* The reference code: big and easy to copy */
+.referens {
+    padding: 0.1rem 0.5rem;
+    border-radius: 0.4rem;
+    background: #202923;
+    color: #ffffff;
+    font-family: monospace;
+    font-size: 1.15rem;
+}
+
+@media (max-width: 700px) {
+    .matchhuvud,
+    .betalning {
+        padding: 1.5rem;
+    }
+}

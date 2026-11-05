@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/start.css">
     <link rel="stylesheet" href="css/sok.css">
     <link rel="stylesheet" href="css/matchkort.css">
+    <link rel="stylesheet" href="css/hero.css">
 
     <script src="js/api.js" defer></script>
     <script src="js/script.js" defer></script>
@@ -42,6 +43,14 @@
             <input id="sok-text" type="search" placeholder="Sök lag, t.ex. Degerfors IF eller AIK" aria-label="Sök lag">
             <select id="sok-stad" aria-label="Stad">
                 <option value="">Alla städer</option>
+            </select>
+                <select id="sok-datum" aria-label="Datum">
+                    <option value="">Alla datum</option>
+                    <option value="idag">Idag</option>
+                    <option value="helg">I helgen</option>
+                    <option value="vecka">Kommande 7 dagar</option>
+                    <option value="manad">Kommande 30 dagar</option>
+                </select>
             </select>
             <button>Sök</button>
         </form>
@@ -82,8 +91,11 @@
     <footer>
 
         <div class="footer-innehåll">
-            <p>&copy; 2026 Ticshare UF. UF-företag inom Ung Företagsamhet.</p>
-            <p>ticshareuf@gmail.com</p>
+            <p>&copy; 2026 Ticshare UF är ett UF-företag drivet av elever inom Ung Företagsamhet.</p>
+            <div class="footer-email">
+                <img class="email-favicon" src="bilder/email.png" alt="">
+                <p>ticshareuf@gmail.com</p>
+            </div>
         </div>
 
     </footer>

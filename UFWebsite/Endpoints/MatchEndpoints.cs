@@ -73,12 +73,13 @@ public static class MatchEndpoints
                     m.HomeClub.Sport,
                     m.StartTime,
                     m.Arena,
+                    m.HomeClub.City,
                     m.Competition,
                     flow.ServiceFee,
                     Tickets = m.Listings
                         .Where(l => l.Status == ListingStatus.Available)
                         .OrderBy(l => l.Price)
-                        .Select(l => new { l.Id, l.Price, l.SeasonCard.Section, l.SeasonCard.Row, l.SeasonCard.Seat })
+                        .Select(l => new { l.Id, l.Price, l.FaceValue, l.SeasonCard.Section, l.SeasonCard.Row, l.SeasonCard.Seat })
                         .ToList(),
                 })
                 .FirstOrDefaultAsync();
