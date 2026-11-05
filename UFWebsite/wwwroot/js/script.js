@@ -57,5 +57,18 @@ document.querySelectorAll(".välj").forEach((val) => {
     });
 });
 
+// If the user is already logged in, "Logga in" becomes "Mina sidor".
+async function visaInloggning() {
+    try {
+        await api("/api/auth/me"); // answers 401 if not logged in, and then api() throws
+        const knapp = document.getElementById("login-knapp");
+        knapp.textContent = "Mina sidor";
+        knapp.href = "mina-sidor.html";
+    } catch {
+        // Not logged in: keep the "Logga in" button as it is.
+    }
+}
+
+visaInloggning();
 laddaStader();
 visaMatcher();

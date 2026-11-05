@@ -6,17 +6,17 @@ const statusText = {
     PendingReview: "Väntar på granskning", Approved: "Godkänt", Available: "Till salu", Reserved: "Reserverad",
     Sold: "Såld", Rejected: "Nekad", Blocked: "Spärrad",
 };
-
+ 
 async function start() {
     let jag;
     try { jag = await api("/api/auth/me"); }
     catch { location.href = "login.html"; return; }
-
+ 
     document.getElementById("namn").textContent = jag.fullName;
     document.getElementById("swish").value = jag.swishNumber ?? "";
     await Promise.all([visaKop(), visaForsaljningar(), visaKort(), fyllKlubbar()]);
 }
-
+ 
 async function visaKop() {
     const kop = await api("/api/orders/mine");
     document.getElementById("kop").innerHTML = kop.length === 0 ? "<p>Inga köp än.</p>" : kop.map(o => `
@@ -26,7 +26,7 @@ async function visaKop() {
             ${o.status === "TicketSent" ? `<button onclick="fattBiljett(${o.id})">Jag har fått biljetten</button>` : ""}
         </div>`).join("");
 }
-
+ 
 async function visaForsaljningar() {
     const lista = await api("/api/me/listings");
     document.getElementById("forsaljningar").innerHTML = lista.length === 0 ? "<p>Inga försäljningar än.</p>" : lista.map(l => `
@@ -40,25 +40,29 @@ async function visaForsaljningar() {
             ${["PendingReview", "Available"].includes(l.status) ? `<button onclick="taBort(${l.id})">Ta bort</button>` : ""}
         </div>`).join("");
 }
-
+ 
 async function visaKort() {
     const kort = await api("/api/me/seasoncards");
     document.getElementById("kort").innerHTML = kort.length === 0 ? "<p>Inga säsongskort än.</p>" : kort.map(k => `
-        <p>${esc(k.club)} ${esc(k.season)}, kort ${esc(k.cardNumber)}: ${statusText[k.status]} ${k.rejectionReason ? `(${esc(k.rejectionReason)})` : ""}</p>`).join("");
-
+        <div class="rad kortrad">
+            <p><strong>${esc(k.club)} ${esc(k.season)}</strong>, kort ${esc(k.cardNumber)}</p>
+            <span class="status status-${k.status}">${statusText[k.status]}</span>
+            ${k.rejectionReason ? `<p class="nekad-orsak">Orsak: ${esc(k.rejectionReason)}</p>` : ""}
+        </div>`).join("");
+ 
     // Only approved cards can be used to sell.
     const godkanda = kort.filter(k => k.status === "Approved");
     document.getElementById("salj-kort").innerHTML = godkanda.map(k =>
         `<option value="${k.id}" data-club="${k.clubId}">${esc(k.club)}, sektion ${esc(k.section)} rad ${esc(k.row)} plats ${esc(k.seat)}</option>`).join("");
     await fyllMatcher();
 }
-
+ 
 async function fyllKlubbar() {
     const klubbar = await api("/api/clubs");
     document.getElementById("kort-klubb").innerHTML = klubbar.filter(k => k.allowsResale)
         .map(k => `<option value="${k.id}">${esc(k.name)}</option>`).join("");
 }
-
+ 
 // The match list only shows home matches for the club of the chosen season card.
 async function fyllMatcher() {
     const valt = document.getElementById("salj-kort").selectedOptions[0];
@@ -68,9 +72,9 @@ async function fyllMatcher() {
         .filter(m => m.homeClubId == valt.dataset.club)
         .map(m => `<option value="${m.id}">${esc(m.home)} – ${esc(m.away)}, ${datum(m.startTime)}</option>`).join("");
 }
-
+ 
 document.getElementById("salj-kort").addEventListener("change", fyllMatcher);
-
+ 
 document.getElementById("salj-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const meddelande = document.getElementById("salj-meddelande");
@@ -85,7 +89,7 @@ document.getElementById("salj-form").addEventListener("submit", async (e) => {
         visaForsaljningar();
     } catch (fel) { meddelande.textContent = fel.message; }
 });
-
+ 
 document.getElementById("kort-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const meddelande = document.getElementById("kort-meddelande");
@@ -104,7 +108,7 @@ document.getElementById("kort-form").addEventListener("submit", async (e) => {
         visaKort();
     } catch (fel) { meddelande.textContent = fel.message; }
 });
-
+ 
 document.getElementById("swish-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     try {
@@ -112,32 +116,33 @@ document.getElementById("swish-form").addEventListener("submit", async (e) => {
         alert("Sparat!");
     } catch (fel) { alert(fel.message); }
 });
-
+ 
 async function fattBiljett(orderId) {
     await api(`/api/orders/${orderId}/received`, "POST");
     visaKop();
 }
-
+ 
 async function biljettSkickad(orderId) {
     await api(`/api/me/sales/${orderId}/ticket-sent`, "POST");
     visaForsaljningar();
 }
-
+ 
 async function taBort(listingId) {
     if (!confirm("Ta bort biljetten från försäljning?")) return;
     try { await api(`/api/me/listings/${listingId}`, "DELETE"); visaForsaljningar(); }
     catch (fel) { alert(fel.message); }
 }
-
+ 
 document.getElementById("logga-ut").addEventListener("click", async () => {
     await api("/api/auth/logout", "POST");
     location.href = "index.html";
 });
-
+ 
 document.getElementById("radera").addEventListener("click", async () => {
     if (!confirm("Radera ditt konto? Det går inte att ångra.")) return;
     try { await api("/api/auth/me", "DELETE"); location.href = "index.html"; }
     catch (fel) { alert(fel.message); }
 });
-
+ 
 start();
+ 

@@ -36,3 +36,6 @@ skapaKnapp.addEventListener("click", async () => {
         visaFel(panel, fel.message);
     }
 });
+
+// Already logged in? Then there's no need to log in again.
+api("/api/auth/me").then(() => location.href = "mina-sidor.html").catch(() => {});

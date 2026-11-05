@@ -6,11 +6,11 @@
     --dampad-text: #64736a;
     --kant: #e0e9e3;
 }
-
+ 
 * {
     box-sizing: border-box;
 }
-
+ 
 body {
     max-width: 760px;
     margin: 0 auto;
@@ -19,24 +19,24 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background: #f7faf8;
 }
-
+ 
 h1 {
     font-size: 2.2rem;
     margin-bottom: 8px;
 }
-
+ 
 h2 {
     font-size: 1.4rem;
     margin: 40px 0 12px;
     padding-bottom: 6px;
     border-bottom: 2px solid var(--kant);
 }
-
+ 
 p {
     font-size: 1rem;
     color: var(--dampad-text);
 }
-
+ 
 /* Each purchase, sale and season card is a white card */
 .rad {
     padding: 14px 18px;
@@ -46,11 +46,11 @@ p {
     background: #fff;
     box-shadow: 0 3px 12px rgba(34, 79, 54, 0.05);
 }
-
+ 
 .rad p {
     margin: 4px 0;
 }
-
+ 
 /* Forms: one field per line */
 form {
     display: grid;
@@ -60,21 +60,21 @@ form {
     border-radius: 18px;
     background: #fff;
 }
-
+ 
 label {
     display: grid;
     gap: 6px;
     font-size: 0.95rem;
     color: var(--text);
 }
-
+ 
 /* The checkbox sits next to its text instead of above it */
 label:has(input[type="checkbox"]) {
     display: flex;
     align-items: flex-start;
     gap: 10px;
 }
-
+ 
 input,
 select {
     padding: 10px 12px;
@@ -82,14 +82,14 @@ select {
     border-radius: 10px;
     font: inherit;
 }
-
+ 
 input:focus,
 select:focus {
     outline: none;
     border-color: var(--gron);
     box-shadow: 0 0 0 3px rgba(50, 215, 134, 0.2);
 }
-
+ 
 button {
     justify-self: start;
     padding: 10px 18px;
@@ -101,30 +101,73 @@ button {
     font-weight: bold;
     cursor: pointer;
 }
-
+ 
 button:hover {
     background: var(--gron);
 }
-
+ 
 #logga-ut {
     background: transparent;
     color: var(--dampad-text);
     border: 1px solid var(--kant);
 }
-
+ 
 #radera {
     background: #c0392b;
 }
-
+ 
 #radera:hover {
     background: #e74c3c;
 }
-
+ 
 a {
     color: var(--dampad-text);
     text-decoration: none;
 }
-
+ 
 a:hover {
     color: var(--morkgron);
 }
+ 
+/* Season cards: name on the left, a coloured status badge on the right */
+.kortrad {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 16px;
+}
+ 
+.kortrad p {
+    color: var(--text);
+    font-size: 1.05rem;
+}
+ 
+.status {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+ 
+.status-Approved {
+    background: #d9f7e7;
+    color: #0f6b3e;
+}
+ 
+.status-PendingReview {
+    background: #fff4d6;
+    color: #8a5a00;
+}
+ 
+.status-Rejected {
+    background: #fde2df;
+    color: #a12a1d;
+}
+ 
+.nekad-orsak {
+    width: 100%;
+    color: #a12a1d;
+}
+ 
