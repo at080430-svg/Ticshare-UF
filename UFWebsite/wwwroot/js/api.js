@@ -28,3 +28,10 @@ function kronor(belopp) {
 function datum(iso) {
     return new Date(iso).toLocaleString("sv-SE", { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
 }
+
+// CSS class for a sport's colours, e.g. "Ishockey" -> "sport-ishockey" (see css/sporter.css).
+function sportKlass(sport) {
+    const kanda = ["fotboll", "ishockey", "basket", "innebandy"];
+    const namn = (sport ?? "").toLowerCase();
+    return kanda.includes(namn) ? `sport-${namn}` : "sport-standard";
+}

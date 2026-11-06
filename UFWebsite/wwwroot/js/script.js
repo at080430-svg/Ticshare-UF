@@ -30,7 +30,7 @@ function matchkort(m) {
     const ordinarie = m.lowestFaceValue > m.lowestPrice ? `<s>${kronor(m.lowestFaceValue)}</s>` : "";
 
     return `
-        <a class="matchkort" href="match.html?id=${m.id}">
+        <a class="matchkort ${sportKlass(m.sport)}" href="match.html?id=${m.id}">
             <div class="matchkort-topp">
                 <span class="matchkort-serie">${esc(m.sport)}${m.competition ? ` · ${esc(m.competition)}` : ""}</span>
                 ${etikett}
@@ -75,6 +75,11 @@ let vantar;
 document.getElementById("sok-text").addEventListener("input", () => {
     clearTimeout(vantar);
     vantar = setTimeout(() => document.getElementById("sok-form").requestSubmit(), 300);
+});
+
+// Give each sport button its sport's colour ("Alla" gets the standard green-blue).
+document.querySelectorAll(".välj").forEach((val) => {
+    val.classList.add(sportKlass(val.textContent.trim()));
 });
 
 document.querySelectorAll(".välj").forEach((val) => {

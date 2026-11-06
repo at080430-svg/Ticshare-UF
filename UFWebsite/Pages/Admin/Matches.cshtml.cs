@@ -9,11 +9,15 @@ namespace UFWebsite.Pages.Admin;
 public class MatchesModel(AppDbContext db) : PageModel
 {
     public List<Club> Clubs { get; set; } = new();
+
+    // The clubs grouped by sport, for the dropdowns under "Ny match".
+    public IEnumerable<IGrouping<string, Club>> ClubsBySport =>
+        Clubs.GroupBy(c => c.Sport).OrderBy(g => g.Key);
     public List<Match> Matches { get; set; } = new();
  
     public async Task OnGetAsync()
     {
-        Clubs = await db.Clubs.OrderBy(c => c.Name).ToListAsync();
+        Clubs = await db.Clubs.OrderBy(c => c.Sport).ThenBy(c => c.Name).ToListAsync();
         Matches = await db.Matches.Include(m => m.HomeClub).Include(m => m.AwayClub).Include(m => m.Listings)
             .OrderByDescending(m => m.StartTime).ToListAsync();
     }
@@ -24,6 +28,13 @@ public class MatchesModel(AppDbContext db) : PageModel
         if (homeClubId == awayClubId)
         {
             TempData["Message"] = "Ett lag kan inte möta sig självt.";
+            return RedirectToPage();
+        }
+        var sports = await db.Clubs.Where(c => c.Id == homeClubId || c.Id == awayClubId)
+            .Select(c => c.Sport).Distinct().CountAsync();
+        if (sports > 1)
+        {
+            TempData["Message"] = "Lagen måste spela samma sport.";
             return RedirectToPage();
         }
         db.Matches.Add(new Match

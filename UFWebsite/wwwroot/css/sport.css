@@ -1,0 +1,106 @@
+/* Every sport gets its own colour pair. The cards and the match page read the colours
+   from these variables, so to change a sport's colour you only edit it here.
+   --s1 / --s2: gradient start and end, --stext: darker shade for text, --ssoft: light tint. */
+.sport-standard {
+    --s1: #32d786; --s2: #4a80ff; --stext: #168653; --ssoft: rgba(50, 215, 134, 0.12);
+}
+
+.sport-fotboll {
+    --s1: #2ed47a; --s2: #0fae8c; --stext: #0f7a4a; --ssoft: rgba(46, 212, 122, 0.13);
+}
+
+.sport-ishockey {
+    --s1: #38bdf8; --s2: #4a6fff; --stext: #1f5fd1; --ssoft: rgba(56, 189, 248, 0.14);
+}
+
+.sport-basket {
+    --s1: #ffb03d; --s2: #ff6b3d; --stext: #c2410c; --ssoft: rgba(255, 140, 60, 0.14);
+}
+
+.sport-innebandy {
+    --s1: #b47cff; --s2: #6f5cff; --stext: #6a3fd9; --ssoft: rgba(140, 100, 255, 0.13);
+}
+
+/* ----- Match cards on the start page ----- */
+.matchkort {
+    background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        linear-gradient(135deg, var(--s1), var(--s2)) border-box;
+}
+
+.matchkort:hover {
+    box-shadow: 0 14px 36px var(--ssoft);
+}
+
+.matchkort-serie {
+    background: linear-gradient(90deg, var(--s1), var(--s2));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.matchkort-kvar {
+    background: var(--ssoft);
+}
+
+.kvar-antal {
+    color: var(--stext);
+}
+
+.matchkort-botten::before {
+    box-shadow: inset -2px 0 0 var(--s1);
+}
+
+.matchkort-botten::after {
+    box-shadow: inset 2px 0 0 var(--s2);
+}
+
+.matchkort-kop {
+    background: linear-gradient(90deg, var(--s1), var(--s2));
+}
+
+/* ----- Sport filter buttons: the chosen one gets its sport's colours ----- */
+.välj.vald {
+    border-color: transparent;
+    background: linear-gradient(90deg, var(--s1), var(--s2));
+    color: #ffffff;
+}
+
+/* ----- Match page ----- */
+.matchhuvud {
+    background: linear-gradient(135deg, var(--s1), var(--s2));
+    box-shadow: 0 14px 40px var(--ssoft);
+}
+
+.matchhuvud-kvar {
+    color: var(--stext);
+}
+
+.sportsida .biljett,
+.sportsida .betalning {
+    background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        linear-gradient(135deg, var(--s1), var(--s2)) border-box;
+}
+
+.sportsida .biljett button,
+.sportsida .simulera,
+.sportsida .biljett .etikett {
+    background: linear-gradient(90deg, var(--s1), var(--s2));
+    color: #ffffff;
+}
+
+.sportsida .biljett-botten::before {
+    box-shadow: inset -2px 0 0 var(--s1);
+}
+
+.sportsida .biljett-botten::after {
+    box-shadow: inset 2px 0 0 var(--s2);
+}
+
+.sportsida .belopp-ruta {
+    background: var(--ssoft);
+}
+
+.sportsida .belopp-ruta strong {
+    color: var(--stext);
+}

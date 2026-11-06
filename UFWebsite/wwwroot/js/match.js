@@ -7,6 +7,8 @@ async function visaMatch() {
     const klockslag = tid.toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" });
 
     document.title = `${m.home} – ${m.away} | Ticshare UF`;
+    // The whole page takes the sport's colours (see css/sporter.css).
+    document.body.classList.add("sportsida", sportKlass(m.sport));
     document.getElementById("serie").textContent = m.competition ? `${m.sport} · ${m.competition}` : m.sport;
     document.getElementById("rubrik").innerHTML = `${esc(m.home)} <span class="mot">mot</span> ${esc(m.away)}`;
     document.getElementById("info").textContent = `${dag} · ${klockslag} · ${m.arena}${m.city ? `, ${m.city}` : ""}`;
