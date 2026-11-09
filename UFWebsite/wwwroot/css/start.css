@@ -131,8 +131,44 @@ nav {
     font-size: 1rem;
 }
 
+.såfunkardet-länk{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 0.7rem 1rem;
+    border: 1px solid #32d786;
+    border-radius: 2rem;
+    background-color: #32d786;
+    color: #202923;
+    font-weight: 600;
+    transition: background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.såfunkardet-länk:hover{
+    background-color: #27c477;
+    color: #202923;
+    box-shadow: 0 4px 12px rgba(22, 134, 83, 0.2);
+    transform: translateY(-1px);
+}
+
+.såfunkardet-länk:focus-visible{
+    outline: 3px solid #168653;
+    outline-offset: 3px;
+}
+
 .såfunkardet-ruta1, .såfunkardet-ruta2{
+    display: flex;
+    flex-direction: column;
     margin-bottom: 4rem;
+}
+
+.såfunkardet-länk{
+    align-self: flex-start;
+    margin-top: auto;
+    margin-bottom: 2rem;
+    position: relative;
+    top: 1.5rem;
 }
 
 .footer-innehåll{
