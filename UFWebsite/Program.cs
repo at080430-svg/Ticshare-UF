@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using UFWebsite.Data;
@@ -66,21 +65,6 @@ builder.Services.ConfigureHttpJsonOptions(options =>
     options.SerializerOptions.Converters.Add(new JsonStringEnumConverter()));
  
 builder.Services.AddScoped<TicketFlow>();
-builder.Services.AddScoped<EmailSender>();
- 
-// Stops spam on the contact form: at most 5 messages per 10 minutes from the same computer.
-builder.Services.AddRateLimiter(options =>
-{
-    options.AddPolicy("kontakt", context => RateLimitPartition.GetFixedWindowLimiter(
-        context.Connection.RemoteIpAddress?.ToString() ?? "okänd",
-        _ => new FixedWindowRateLimiterOptions { PermitLimit = 5, Window = TimeSpan.FromMinutes(10) }));
-    options.OnRejected = async (context, token) =>
-    {
-        context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
-        await context.HttpContext.Response.WriteAsJsonAsync(
-            new { error = "Du har skickat flera meddelanden på kort tid. Vänta en stund och försök igen." }, token);
-    };
-});
  
 var app = builder.Build();
  
@@ -93,7 +77,6 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
  
 app.UseRouting();
-app.UseRateLimiter();
  
 app.UseAuthentication();
 app.UseAuthorization();
@@ -113,7 +96,6 @@ app.MapAuthEndpoints();
 app.MapMatchEndpoints();
 app.MapSellerEndpoints();
 app.MapOrderEndpoints();
-app.MapContactEndpoints();
  
 // Creates or updates the database tables when the site starts.
 // Needed on Loopia, where we can't run "dotnet ef database update" against the server.
@@ -122,7 +104,7 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     await db.Database.MigrateAsync();
 }
- 
+
 await SeedData.CreateAdminAsync(app.Services);
  
 app.Run();
