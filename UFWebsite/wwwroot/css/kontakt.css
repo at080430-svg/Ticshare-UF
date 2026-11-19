@@ -1,0 +1,217 @@
+/* Contact page. Uses the same background and font as the front page (hero.css). */
+.kontakt {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 5rem;
+}
+
+.kontakt-intro h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    background: linear-gradient(90deg, #32d786 0%, #29a0e0 55%, #5b84ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.kontakt-intro p {
+    font-size: 1.2rem;
+    color: #55665d;
+}
+
+.kontakt-info {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.kontakt-info div {
+    display: grid;
+    gap: 0.25rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid #dfe7e2;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    color: #55665d;
+}
+
+.kontakt-info strong {
+    color: #202923;
+}
+
+.kontakt-info a {
+    color: #168653;
+    font-weight: bold;
+}
+
+/* The white form card with a gradient border */
+.kontakt-kort {
+    padding: 2rem;
+    border-radius: 1.5rem;
+    border: 2px solid transparent;
+    background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        linear-gradient(135deg, #32d786 0%, #29a0e0 60%, #4a80ff 100%) border-box;
+    box-shadow: 0 14px 40px rgba(34, 79, 54, 0.08);
+}
+
+#kontakt-form {
+    display: grid;
+    gap: 1.1rem;
+}
+
+.kontakt-rad {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.falt {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.falt label {
+    font-weight: bold;
+    color: #202923;
+}
+
+.falt input,
+.falt select,
+.falt textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #dfe7e2;
+    border-radius: 0.75rem;
+    background: #f7faf8;
+    color: #202923;
+    font: inherit;
+    font-size: 1rem;
+}
+
+.falt textarea {
+    resize: vertical;
+    min-height: 9rem;
+}
+
+.falt input:focus,
+.falt select:focus,
+.falt textarea:focus {
+    outline: none;
+    border-color: #32d786;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(50, 215, 134, 0.2);
+}
+
+.falt small {
+    color: #7d8a83;
+}
+
+.raknare {
+    justify-self: end;
+}
+
+/* Spam trap: moved off the screen instead of display:none, which some robots detect */
+.falla {
+    position: absolute;
+    left: -9999px;
+}
+
+.integritet {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #7d8a83;
+}
+
+.kontakt-fel {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    background: #fde2df;
+    color: #a12a1d;
+    font-size: 1rem;
+}
+
+.kontakt-fel[hidden],
+.kontakt-tack[hidden],
+#kontakt-form[hidden] {
+    display: none;
+}
+
+#skicka {
+    padding: 0.9rem;
+    border: none;
+    border-radius: 0.75rem;
+    background: linear-gradient(90deg, #32d786, #29a0e0 60%, #4a80ff);
+    color: #ffffff;
+    font: inherit;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 160ms ease;
+}
+
+#skicka:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* Thank-you message after sending */
+.kontakt-tack {
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+.tack-ikon {
+    display: grid;
+    place-items: center;
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #32d786, #4a80ff);
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.kontakt-tack p {
+    font-size: 1.1rem;
+}
+
+.tillbaka-knapp {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 2rem;
+    background: #202923;
+    color: #ffffff;
+}
+
+.tillbaka-knapp:hover {
+    color: #ffffff;
+    opacity: 0.85;
+}
+
+@media (max-width: 800px) {
+    .kontakt {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .kontakt-kort {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .kontakt-rad {
+        grid-template-columns: 1fr;
+    }
+}
