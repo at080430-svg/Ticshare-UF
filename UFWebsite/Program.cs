@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.DataProtection;
 using System.Text.Json.Serialization;
 using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Identity;
@@ -27,11 +28,14 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     })
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
+    builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(Path.Combine(builder.Environment.ContentRootPath, "keys")))
+    .SetApplicationName("Ticshare");
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.Name = "Ticshare.Auth";
-    options.Cookie.HttpOnly = true;                      // JavaScript can't read the cookie
+    options.Cookie.HttpOnly = true;                  
     options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
     options.Cookie.SameSite = SameSiteMode.Lax;
     options.LoginPath = "/admin/login";
