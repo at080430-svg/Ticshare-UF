@@ -1,0 +1,311 @@
+/* Prototype B: "Matchkväll". Dark floodlit hero, big sport tiles, live numbers.
+   Replaces css/start.css and css/hero.css on the start page (load it last). */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap");
+
+:root {
+    --natt: #07130e;
+    --natt2: #0c2219;
+    --gron: #32d786;
+    --gradient: linear-gradient(90deg, #32d786 0%, #29a0e0 55%, #5b84ff 100%);
+    --ljus: #f3f7f4;
+    --mork: #0d1a14;
+    --grå: #55665d;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    font-family: "DM Sans", Arial, sans-serif;
+    background: var(--ljus);
+    color: #202923;
+}
+
+.sida { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+p { font-size: 1.15rem; line-height: 1.6; color: var(--grå); }
+h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.02em; color: var(--mork); margin: 0 0 1rem; }
+
+/* ----- Dark hero ----- */
+.natt {
+    position: relative;
+    overflow: clip;
+    padding-bottom: 3.5rem;
+    background:
+        radial-gradient(ellipse 60% 50% at 50% 115%, rgba(50, 215, 134, 0.35), transparent 70%),
+        linear-gradient(180deg, var(--natt) 0%, var(--natt2) 100%);
+    color: #fff;
+}
+
+/* Two soft "floodlight" beams from the top corners */
+.stralkastare,
+.stralkastare::after {
+    position: absolute;
+    top: -20%;
+    width: 55%;
+    height: 120%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 70%);
+    filter: blur(30px);
+    pointer-events: none;
+}
+
+.stralkastare { left: -12%; transform: rotate(-24deg); }
+.stralkastare::after { content: ""; left: 140%; top: 0; height: 100%; width: 100%; transform: rotate(48deg); }
+
+.natt .sida { position: relative; }
+
+.toppen { display: flex; align-items: center; gap: 2rem; padding: 1.25rem 0; }
+.logo { width: 6rem; display: block; filter: brightness(0) invert(1); }
+.meny { display: flex; gap: 2rem; margin: 0 auto; font-size: 1.05rem; }
+.meny a { color: rgba(255, 255, 255, 0.7); }
+.meny a:hover { color: #fff; }
+
+.login {
+    padding: 0.6rem 1.3rem;
+    border-radius: 2rem;
+    background: var(--gron);
+    color: var(--mork);
+    font-weight: 700;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 3rem;
+    align-items: end;
+    padding: 4.5rem 0 3.5rem;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 5.6vw, 4.4rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+}
+
+.gradient {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-bottom: 0.08em;
+}
+
+.hero-ingress { max-width: 36rem; margin: 1.5rem 0; font-size: 1.25rem; color: rgba(255, 255, 255, 0.72); }
+
+.live-rad {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 1.8rem;
+    padding: 0.55rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2rem;
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.live-rad[hidden] { display: none; }
+
+.live-prick {
+    width: 0.6rem;
+    height: 0.6rem;
+    margin-right: 0.3rem;
+    border-radius: 50%;
+    background: var(--gron);
+    box-shadow: 0 0 0 0 rgba(50, 215, 134, 0.6);
+    animation: puls 1.8s infinite;
+}
+
+@keyframes puls {
+    70% { box-shadow: 0 0 0 10px rgba(50, 215, 134, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(50, 215, 134, 0); }
+}
+
+.hero-knappar { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+.knapp {
+    display: inline-block;
+    padding: 0.95rem 1.7rem;
+    border-radius: 2rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+    transition: transform 150ms ease;
+}
+
+.knapp:hover { transform: translateY(-2px); }
+.knapp-fylld { background: var(--gradient); color: #fff; }
+.knapp-fylld:hover { color: #fff; }
+.knapp-glas { border: 1px solid rgba(255, 255, 255, 0.35); color: #fff; }
+.knapp-glas:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+
+/* "Next match" card */
+.nasta-match {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.6rem;
+    border-radius: 1.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    transition: transform 150ms ease, border-color 150ms ease;
+}
+
+.nasta-match:hover { color: #fff; transform: translateY(-3px); border-color: var(--s1, var(--gron)); }
+.nasta-etikett { font-size: 0.9rem; font-weight: 700; color: var(--s1, var(--gron)); text-transform: uppercase; letter-spacing: 0.06em; }
+#nasta-lag { font-size: 1.6rem; line-height: 1.2; }
+#nasta-info { color: rgba(255, 255, 255, 0.65); }
+
+.nasta-pris {
+    align-self: flex-start;
+    margin-top: 0.8rem;
+    padding: 0.45rem 1rem;
+    border-radius: 2rem;
+    background: linear-gradient(90deg, var(--s1, #32d786), var(--s2, #4a80ff));
+    font-weight: 700;
+}
+
+.nasta-pris:empty { display: none; }
+
+/* Sport tiles (these are the .välj filter buttons) */
+.sport-rutor {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin: 0;
+}
+
+.sport-rutor .välj {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    min-height: 120px;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 150ms ease, background 150ms ease;
+}
+
+/* Line icons drawn as SVG masks, so they take the text colour (white) */
+.sport-rutor .välj::before {
+    content: "";
+    width: 2rem;
+    height: 2rem;
+    background: currentColor;
+    -webkit-mask: var(--ikon) center / contain no-repeat;
+    mask: var(--ikon) center / contain no-repeat;
+}
+
+.sport-rutor .välj[data-ikon="alla"] { --ikon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3.5' y='3.5' width='7' height='7' rx='1.5'/%3E%3Crect x='13.5' y='3.5' width='7' height='7' rx='1.5'/%3E%3Crect x='3.5' y='13.5' width='7' height='7' rx='1.5'/%3E%3Crect x='13.5' y='13.5' width='7' height='7' rx='1.5'/%3E%3C/svg%3E"); }
+.sport-rutor .välj[data-ikon="fotboll"] { --ikon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7.5l4 2.9-1.5 4.7h-5L8 10.4z'/%3E%3Cpath d='M12 7.5V3.2M16 10.4l4.2-1.4M14.5 15.1l2.6 3.6M9.5 15.1l-2.6 3.6M8 10.4L3.8 9'/%3E%3C/svg%3E"); }
+.sport-rutor .välj[data-ikon="ishockey"] { --ikon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3l-6.5 14.5a2 2 0 0 1-1.8 1.2H3.5'/%3E%3Cpath d='M3.5 21h5a2 2 0 0 0 1.8-1.2l1-2.3'/%3E%3Cellipse cx='17.5' cy='18.5' rx='3.5' ry='1.6'/%3E%3Cpath d='M14 18.5v1c0 .9 1.6 1.6 3.5 1.6s3.5-.7 3.5-1.6v-1'/%3E%3C/svg%3E"); }
+.sport-rutor .välj[data-ikon="basket"] { --ikon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M3 12h18M12 3v18'/%3E%3Cpath d='M5.6 5.6a9 9 0 0 1 0 12.8M18.4 5.6a9 9 0 0 0 0 12.8'/%3E%3C/svg%3E"); }
+.sport-rutor .välj[data-ikon="innebandy"] { --ikon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 3l8.5 13.5a2 2 0 0 0 1.7.9H19'/%3E%3Cpath d='M19 17.4a2 2 0 0 1 0 3.6h-4.8a2 2 0 0 1-1.7-.9'/%3E%3Ccircle cx='7' cy='18' r='3'/%3E%3Ccircle cx='7' cy='18' r='.6' fill='black'/%3E%3Ccircle cx='5.6' cy='16.9' r='.5' fill='black'/%3E%3Ccircle cx='8.4' cy='16.9' r='.5' fill='black'/%3E%3C/svg%3E"); }
+.sport-rutor .välj:hover { color: #fff; transform: translateY(-3px); background: rgba(255, 255, 255, 0.1); }
+.sport-rutor .välj.vald { border-color: transparent; background: linear-gradient(135deg, var(--s1), var(--s2)); }
+
+/* ----- Light match section ----- */
+.ljus { padding: 3.5rem 0 2rem; }
+.kommande-events { margin: 0; }
+.sokruta { margin: 1.2rem 0 0.5rem; }
+.matchkort-botten::before,
+.matchkort-botten::after { background: var(--ljus); }
+
+.tva-vagar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.vag { padding: 2rem; border-radius: 1.5rem; }
+.vag h3 { margin: 0 0 0.5rem; font-size: 1.6rem; color: var(--mork); }
+.vag p { margin: 0 0 1.2rem; }
+.vag-kop { background: #fff; border: 1px solid #dfe7e2; }
+.vag-salj { background: linear-gradient(135deg, rgba(50, 215, 134, 0.16), rgba(74, 128, 255, 0.16)); }
+.vag-lank { font-weight: 700; color: var(--mork); }
+
+/* ----- About us (dark again, so the page "closes" like it opened) ----- */
+.om-oss { padding: 5rem 0; background: var(--natt); }
+.om-oss h2 { color: #fff; max-width: 46rem; }
+.om-oss p { color: rgba(255, 255, 255, 0.72); margin: 0; }
+
+.overrubrik {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gron);
+}
+
+.om-oss-kolumner { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.5rem 0 3rem; }
+
+.varden { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
+.varden div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1.3rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.varden b { font-size: 1.25rem; color: #fff; }
+.varden span { color: rgba(255, 255, 255, 0.65); }
+
+/* ----- Footer ----- */
+.sidfot { padding: 2rem 0; background: #040b08; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.footer-innehåll { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; }
+.footer-logo { width: 3.5rem; filter: brightness(0) invert(1); }
+.sidfot p { margin: 0; font-size: 1rem; color: #8fa198; }
+.sidfot a { color: #8fa198; }
+.sidfot a:hover { color: #fff; }
+
+.instagram {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 2rem;
+    font-weight: 700;
+}
+
+.instagram:hover { border-color: var(--gron); }
+
+/* ----- Phones and tablets ----- */
+@media (max-width: 900px) {
+    .meny { display: none; }
+    .login { margin-left: auto; }
+    .hero { grid-template-columns: 1fr; padding: 2.5rem 0; }
+    .sport-rutor { grid-template-columns: repeat(3, 1fr); }
+    .sport-rutor .välj { min-height: 90px; }
+    .tva-vagar, .om-oss-kolumner, .varden { grid-template-columns: 1fr; }
+    .instagram { margin-left: 0; }
+    .sokruta { flex-wrap: wrap; }
+    .sokruta input { flex: 1 1 100%; }
+}
+
+@media (max-width: 500px) {
+    .sport-rutor { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 700px) {
+    /* sok.css stacks the fields here: keep each field its full height */
+    .sokruta input, .sokruta select { flex: none; }
+}

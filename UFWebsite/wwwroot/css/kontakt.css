@@ -1,64 +1,138 @@
-/* Contact page. Uses the same background and font as the front page (hero.css). */
+/* Contact page in the same style as the new front page (prototype B: dark top, light content).
+   Self-contained: kontakt.html only needs global.css and this file (no start.css / hero.css). */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap");
+
+:root {
+    --natt: #07130e;
+    --natt2: #0c2219;
+    --gron: #32d786;
+    --gradient: linear-gradient(90deg, #32d786 0%, #29a0e0 55%, #5b84ff 100%);
+    --ljus: #f3f7f4;
+    --mork: #0d1a14;
+    --grå: #55665d;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    font-family: "DM Sans", Arial, sans-serif;
+    background: var(--ljus);
+    color: #202923;
+}
+
+.sida { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+p { font-size: 1.15rem; line-height: 1.6; color: var(--grå); }
+.kontakt-kort h2 { color: var(--mork); }
+h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.02em; color: var(--mork); margin: 0 0 1rem; }
+
+/* ----- Dark hero ----- */
+.natt {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 3.5rem;
+    background:
+        radial-gradient(ellipse 60% 50% at 50% 115%, rgba(50, 215, 134, 0.35), transparent 70%),
+        linear-gradient(180deg, var(--natt) 0%, var(--natt2) 100%);
+    color: #fff;
+}
+
+/* Two soft "floodlight" beams from the top corners */
+.stralkastare,
+.stralkastare::after {
+    position: absolute;
+    top: -20%;
+    width: 55%;
+    height: 120%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 70%);
+    filter: blur(30px);
+    pointer-events: none;
+}
+
+.stralkastare { left: -12%; transform: rotate(-24deg); }
+.stralkastare::after { content: ""; left: 140%; top: 0; height: 100%; width: 100%; transform: rotate(48deg); }
+
+.natt .sida { position: relative; }
+
+.toppen { display: flex; align-items: center; gap: 2rem; padding: 1.25rem 0; }
+.logo { width: 6rem; display: block; filter: brightness(0) invert(1); }
+.meny { display: flex; gap: 2rem; margin: 0 auto; font-size: 1.05rem; }
+.meny a { color: rgba(255, 255, 255, 0.7); }
+.meny a:hover { color: #fff; }
+
+.login {
+    padding: 0.6rem 1.3rem;
+    border-radius: 2rem;
+    background: var(--gron);
+    color: var(--mork);
+    font-weight: 700;
+}
+
+.kontakt-hero { padding: 3.5rem 0 9rem; }
+
+.overrubrik {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gron);
+}
+
+.kontakt-hero h1 {
+    margin: 0;
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+    color: #fff;
+}
+
+.kontakt-hero p { max-width: 36rem; margin: 1.2rem 0 0; font-size: 1.25rem; color: rgba(255, 255, 255, 0.72); }
+
+/* ----- Content: info on the left, form card on the right ----- */
 .kontakt {
     display: grid;
     grid-template-columns: 1fr 1.3fr;
     gap: 3rem;
     align-items: start;
+    margin-top: -6rem; /* lets the form card reach up into the dark top */
     margin-bottom: 5rem;
+    position: relative;
 }
 
-.kontakt-intro h1 {
-    margin: 0 0 1rem;
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    background: linear-gradient(90deg, #32d786 0%, #29a0e0 55%, #5b84ff 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+/* The info boxes sit on the dark background at first, then continue on the light one */
+.kontakt-intro { padding-top: 7.5rem; }
 
-.kontakt-intro p {
-    font-size: 1.2rem;
-    color: #55665d;
-}
-
-.kontakt-info {
-    display: grid;
-    gap: 1rem;
-    margin-top: 2rem;
-}
+.kontakt-info { display: grid; gap: 1rem; }
 
 .kontakt-info div {
     display: grid;
     gap: 0.25rem;
-    padding: 1rem 1.25rem;
+    padding: 1.1rem 1.3rem;
     border: 1px solid #dfe7e2;
     border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.7);
+    background: #fff;
     font-size: 1rem;
-    color: #55665d;
+    color: var(--grå);
 }
 
-.kontakt-info strong {
-    color: #202923;
-}
-
-.kontakt-info a {
-    color: #168653;
-    font-weight: bold;
-}
+.kontakt-info strong { color: var(--mork); font-size: 1.05rem; }
+.kontakt-info a { color: #168653; font-weight: 700; }
+.kontakt-info a:hover { color: var(--mork); }
 
 /* The white form card with a gradient border */
 .kontakt-kort {
-    padding: 2rem;
+    padding: 2.2rem;
     border-radius: 1.5rem;
     border: 2px solid transparent;
     background:
         linear-gradient(#ffffff, #ffffff) padding-box,
         linear-gradient(135deg, #32d786 0%, #29a0e0 60%, #4a80ff 100%) border-box;
-    box-shadow: 0 14px 40px rgba(34, 79, 54, 0.08);
+    box-shadow: 0 24px 60px rgba(7, 19, 14, 0.18);
 }
 
 #kontakt-form {
@@ -199,19 +273,41 @@
     opacity: 0.85;
 }
 
-@media (max-width: 800px) {
-    .kontakt {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
+/* ----- Footer ----- */
+.sidfot { padding: 2rem 0; background: #040b08; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.footer-innehåll { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; }
+.footer-logo { width: 3.5rem; filter: brightness(0) invert(1); }
+.sidfot p { margin: 0; font-size: 1rem; color: #8fa198; }
+.sidfot a { color: #8fa198; }
+.sidfot a:hover { color: #fff; }
 
-    .kontakt-kort {
-        padding: 1.5rem;
-    }
+.instagram {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 2rem;
+    font-weight: 700;
+}
+
+.instagram:hover { border-color: var(--gron); }
+
+/* ----- Phones and tablets ----- */
+@media (max-width: 900px) {
+    .meny { display: none; }
+    .login { margin-left: auto; }
+    .instagram { margin-left: 0; }
+}
+
+@media (max-width: 800px) {
+    .kontakt-hero { padding: 2.5rem 0 3rem; }
+    .kontakt { grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem; }
+    .kontakt-intro { padding-top: 0; order: 2; }
+    .kontakt-kort { padding: 1.5rem; }
 }
 
 @media (max-width: 480px) {
-    .kontakt-rad {
-        grid-template-columns: 1fr;
-    }
+    .kontakt-rad { grid-template-columns: 1fr; }
 }
